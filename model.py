@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[229]:
-
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,76 +7,33 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 
-
-# In[230]:
-
-
 import warnings
 warnings.filterwarnings('ignore')
 
-
-# In[231]:
-
-
 # Reading the dataset
 cars = pd.read_csv("CarPrice_Assignment.csv")
-
-
-# In[232]:
-
-
 cars.head()
-
-
-# In[233]:
-
 
 #Summary of dataset
 print(cars.info())
 
-
-# ### Data Exploration
-
-# In[234]:
-
+# Data Exploration
 
 #Remove the variable such as car_ID that straight away makes no sense, since it wont be adding any value in determining the price
 cars = cars.drop(['car_ID'],axis=1)
 
-
-# ##### To perform linear regression, we need to figure out on which feature the target variable depends on. We can a make a pair wise plot on numerical variables
-
-# In[235]:
-
+# To perform linear regression, we need to figure out on which feature the target variable depends on. We can a make a pair wise plot on numerical variables
 
 cars.head()
-
-
-# In[236]:
-
-
 cars_num = cars.select_dtypes(include=['float64','int64'])
-
-
-# In[237]:
-
-
 cars_num.head()
-
-
-# In[238]:
-
 
 #pairplot
 plt.figure(figsize=(20, 10))
 sns.pairplot(cars_num)
 plt.show()
 
-
-# #####  Very difficult to infer! Sometimes, when we have a lot of features, it is better to use correlation matrix or heatmap instead of pairplot. 
-
-# In[239]:
-
+#  Very difficult to infer! Sometimes, when we have a lot of features, it is better to use correlation matrix or heatmap instead of pairplot. 
 
 corMatrix = cars_num.corr()
 corMatrix
